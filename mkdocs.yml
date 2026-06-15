@@ -1,0 +1,77 @@
+site_name: Agentic Kernel
+site_description: A microkernel agent runtime — TypeScript + Python, feature-paired.
+site_url: https://agentic-kernel.github.io/agentic-kernel-docs/
+repo_url: https://github.com/agentic-kernel/agentic-kernel-docs
+repo_name: agentic-kernel/agentic-kernel-docs
+copyright: Apache-2.0
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.tabs
+    - navigation.instant
+    - content.code.copy
+    - content.tabs.link
+    - search.suggest
+    - search.highlight
+    - toc.follow
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - Architecture: architecture.md
+  - Guides:
+      - Getting started: guides/sdk-usage-guide.md
+      - Consuming packages: guides/consuming-packages.md
+      - Memory: guides/memory.md
+      - On-device models: guides/on-device.md
+      - Multi-agent orchestration: guides/multi-agent.md
+  - Manuals:
+      - Master developer guide: manuals/master-developer-guide.md
+      - Exhaustive manual: manuals/exhaustive-manual.md
+      - 用户手册（中文）: manuals/user-manual-zh.md
+  - Design:
+      - On-device adapter: design/model-ondevice-adapter.md
+  - Reports:
+      - Overview: reports/index.md
+      - 2026-06-15 Comprehensive real-LLM campaign: reports/2026-06-15-comprehensive-real-llm-campaign.md
+      - 2026-06-13 Full test report: reports/2026-06-13-agent-kernel-full-test-report.md
+      - 2026-06-13 Remote-model stress: reports/2026-06-13-remote-model-framework-stress.md
+      - 2026-06-12 On-device campaign: reports/2026-06-12-ondevice-testing-campaign.md
+      - 2026-06-11 Capability & reliability: reports/2026-06-11-ondevice-capability-reliability.md
+      - 2026-06-10 On-device long run: reports/2026-06-10-model-ondevice-longrun.md
+      - 2026-06-09 On-device performance: reports/2026-06-09-model-ondevice-perf.md
+      - 2026-05-30 Official benchmarks: reports/2026-05-30-official-agent-benchmark-run.md
