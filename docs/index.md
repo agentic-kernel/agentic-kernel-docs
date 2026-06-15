@@ -36,5 +36,6 @@ governed**, and composes the harness at well-defined seams instead. That buys:
 
 ## Status
 
-Packages are currently **private / publishing paused** (Apache-2.0, intended for an
-eventual public release). This documentation site is public.
+**Public** and **Apache-2.0**: TypeScript on **npmjs** (`@agentic-kernel/*`), Python on
+**PyPI** (`agentic-kernel-runtime`; import package `agentic_kernel`). See
+[Installation](guides/consuming-packages.md).
