@@ -26,7 +26,6 @@ theme:
     - navigation.sections
     - navigation.top
     - navigation.tabs
-    - navigation.instant
     - content.code.copy
     - content.tabs.link
     - search.suggest
@@ -49,24 +48,50 @@ markdown_extensions:
 
 plugins:
   - search
+  - i18n:
+      docs_structure: suffix
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: zh
+          name: 中文
+          build: true
+          site_name: Agentic Kernel(中文)
+          nav_translations:
+            Home: 首页
+            Guide: 使用指南
+            Getting started: 快速上手
+            Architecture: 架构
+            Memory: 记忆
+            On-device models: 端侧模型
+            Multi-agent orchestration: 多 Agent 编排
+            Consuming packages: 安装与引入
+            Manual: 完整手册
+            Developer guide: 开发者指南
+            Development records: 开发记录
+            Overview: 概览
+            Design notes: 设计说明
 
+# Two pillars: user-facing Guide (strictly bilingual) + Development records
+# (English-original archive; Chinese overview pages provided where useful).
 nav:
   - Home: index.md
-  - Architecture: architecture.md
-  - Guides:
-      - Getting started: guides/sdk-usage-guide.md
-      - Consuming packages: guides/consuming-packages.md
+  - Guide:
+      - Getting started: guides/getting-started.md
+      - Architecture: architecture.md
       - Memory: guides/memory.md
       - On-device models: guides/on-device.md
       - Multi-agent orchestration: guides/multi-agent.md
-  - Manuals:
-      - Master developer guide: manuals/master-developer-guide.md
-      - Exhaustive manual: manuals/exhaustive-manual.md
-      - 用户手册（中文）: manuals/user-manual-zh.md
-  - Design:
-      - On-device adapter: design/model-ondevice-adapter.md
-  - Reports:
+      - Consuming packages: guides/consuming-packages.md
+      - Manual: manuals/manual.md
+      - Developer guide: manuals/developer-guide.md
+  - Development records:
       - Overview: reports/index.md
+      - Design notes: design/model-ondevice-adapter.md
       - 2026-06-15 Comprehensive real-LLM campaign: reports/2026-06-15-comprehensive-real-llm-campaign.md
       - 2026-06-13 Full test report: reports/2026-06-13-agent-kernel-full-test-report.md
       - 2026-06-13 Remote-model stress: reports/2026-06-13-remote-model-framework-stress.md

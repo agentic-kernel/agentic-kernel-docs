@@ -53,7 +53,7 @@ See the package READMEs and `docs/` for the full API.
 
 ## Published packages
 
-`core`, `testing`, `conformance`, `evaluator`, `model-openai`,
+`core`, `testing`, `conformance`, `evaluator`, `model-openai`, `model-ondevice`,
 `memory-postgres`, `observer-otel`, `multi-agent`, `distributed`, `state-file`,
 `state-postgres` — all under the `@agentic-kernel/` scope.
 

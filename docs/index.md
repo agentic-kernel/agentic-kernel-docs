@@ -28,11 +28,11 @@ governed**, and composes the harness at well-defined seams instead. That buys:
 ## Start here
 
 - **[Architecture](architecture.md)** — the run loop, data model, and the injection seams.
-- **[Getting started](guides/sdk-usage-guide.md)** — first agent in either SDK.
+- **[Getting started](guides/getting-started.md)** — first agent in either SDK.
 - **[Consuming packages](guides/consuming-packages.md)** — install from the registry.
 - **Guides:** [Memory](guides/memory.md) · [On-device models](guides/on-device.md) · [Multi-agent orchestration](guides/multi-agent.md)
-- **Manuals:** [Master developer guide](manuals/master-developer-guide.md) · [Exhaustive manual](manuals/exhaustive-manual.md) · [用户手册（中文）](manuals/user-manual-zh.md)
-- **[Reports](reports/index.md)** — real-LLM evaluation & stress campaigns.
+- **Manuals:** [Developer guide](manuals/developer-guide.md) · [Comprehensive manual](manuals/manual.md)
+- **[Development records](reports/index.md)** — real-LLM evaluation & stress campaigns.
 
 ## Status
 
