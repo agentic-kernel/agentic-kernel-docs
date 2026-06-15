@@ -4,6 +4,12 @@ Build your first agent in either SDK. The shape is the same: construct an engine
 a **planner** (the model) and a **policy** (the guardrails), register **tools**, then
 `run`.
 
+!!! tip "Install first"
+    Follow [Installation](consuming-packages.md) to add `@agentic-kernel/core` (npm)
+    or `agentic-kernel` (pip). The examples below also use a planner adapter —
+    `@agentic-kernel/model-openai` / `model-ondevice` (TS) or the matching Python
+    subpackage.
+
 ## TypeScript
 
 ```ts
@@ -64,8 +70,67 @@ result = await engine.run(
 print(result.status, result.output)
 ```
 
+## Without an API key — run a local model
+
+No remote key needed: point the on-device adapter at a local
+[Ollama](https://ollama.com) (`ollama pull qwen3.5:2b`). `createOnDeviceAgentEngine`
+wires the validated recipe (`plan-then-execute`) for you.
+
+=== "TypeScript"
+
+    ```ts
+    import { createOnDeviceAgentEngine } from "@agentic-kernel/model-ondevice";
+    import { BasicPolicy, ToolRegistry } from "@agentic-kernel/core";
+
+    const generate = async ({ messages }) => {
+      const r = await fetch("http://127.0.0.1:11434/api/chat", {
+        method: "POST",
+        body: JSON.stringify({ model: "qwen3.5:2b", messages, stream: false })
+      });
+      return (await r.json()).message.content;
+    };
+
+    const engine = createOnDeviceAgentEngine({
+      planner: { generate },
+      engine: { policy: new BasicPolicy({ maxSteps: 8, allowedTools: ["search_city"] }), toolRegistry: tools }
+    });
+    // engine.run({ agent, task, host }) as above
+    ```
+
+=== "Python"
+
+    ```python
+    import httpx
+    from agentic_kernel.model_ondevice import OnDevicePlannerOptions, create_on_device_agent_engine
+
+    async def generate(req):
+        async with httpx.AsyncClient() as c:
+            r = await c.post("http://127.0.0.1:11434/api/chat",
+                             json={"model": "qwen3.5:2b", "messages": req.messages, "stream": False})
+        return r.json()["message"]["content"]
+
+    engine = create_on_device_agent_engine(
+        OnDevicePlannerOptions(generate=generate),
+        policy=BasicPolicy(BasicPolicyConfig(max_steps=8, allowed_tools=["search_city"])),
+        tool_registry=tools,
+    )
+    ```
+
+For small models, see [On-device models](on-device.md) for the reliability recipe
+(`plan-then-execute` + voting) that reaches 100%.
+
+## What `run` returns
+
+`engine.run(...)` resolves to an `AgentResult` with a `status`:
+
+- `completed` → `output` holds the final answer.
+- `failed` → `error`; `stopped` → `reason`.
+- `waiting_for_user` / `waiting_for_approval` / `waiting_for_schedule` → the run paused;
+  resume it with `engine.resume(...)` (or `resolveApproval(...)`). The full state is on
+  `result.state`, and `result.state.runId` lets you reload from the `StateStore`.
+
 ## Next
 
 - [Architecture](../architecture.md) — how the loop and seams fit together.
 - [Memory](memory.md) · [On-device models](on-device.md) · [Multi-agent orchestration](multi-agent.md)
-- [Consuming packages](consuming-packages.md) — install from the registry.
+- [Installation](consuming-packages.md) — TypeScript (npm) and Python (pip) in detail.

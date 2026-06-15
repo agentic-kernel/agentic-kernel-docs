@@ -3,6 +3,11 @@
 在任一 SDK 写出第一个 agent。套路一致:用 **planner**(模型)和 **policy**(护栏)
 构建引擎,注册**工具**,然后 `run`。
 
+!!! tip "先安装"
+    按 [安装](consuming-packages.md) 添加 `@agentic-kernel/core`(npm)或
+    `agentic-kernel`(pip)。下面的示例还会用到 planner 适配器——
+    `@agentic-kernel/model-openai` / `model-ondevice`(TS)或对应的 Python 子包。
+
 ## TypeScript
 
 ```ts
@@ -63,8 +68,67 @@ result = await engine.run(
 print(result.status, result.output)
 ```
 
+## 无需 API key —— 跑本地模型
+
+不需要远端密钥:把端侧适配器指向本地 [Ollama](https://ollama.com)
+(`ollama pull qwen3.5:2b`)。`createOnDeviceAgentEngine` 会为你接好已验证的配方
+(`plan-then-execute`)。
+
+=== "TypeScript"
+
+    ```ts
+    import { createOnDeviceAgentEngine } from "@agentic-kernel/model-ondevice";
+    import { BasicPolicy, ToolRegistry } from "@agentic-kernel/core";
+
+    const generate = async ({ messages }) => {
+      const r = await fetch("http://127.0.0.1:11434/api/chat", {
+        method: "POST",
+        body: JSON.stringify({ model: "qwen3.5:2b", messages, stream: false })
+      });
+      return (await r.json()).message.content;
+    };
+
+    const engine = createOnDeviceAgentEngine({
+      planner: { generate },
+      engine: { policy: new BasicPolicy({ maxSteps: 8, allowedTools: ["search_city"] }), toolRegistry: tools }
+    });
+    // 用法同上:engine.run({ agent, task, host })
+    ```
+
+=== "Python"
+
+    ```python
+    import httpx
+    from agentic_kernel.model_ondevice import OnDevicePlannerOptions, create_on_device_agent_engine
+
+    async def generate(req):
+        async with httpx.AsyncClient() as c:
+            r = await c.post("http://127.0.0.1:11434/api/chat",
+                             json={"model": "qwen3.5:2b", "messages": req.messages, "stream": False})
+        return r.json()["message"]["content"]
+
+    engine = create_on_device_agent_engine(
+        OnDevicePlannerOptions(generate=generate),
+        policy=BasicPolicy(BasicPolicyConfig(max_steps=8, allowed_tools=["search_city"])),
+        tool_registry=tools,
+    )
+    ```
+
+小模型请参阅[端侧模型](on-device.md)中能达到 100% 的可靠性配方
+(`plan-then-execute` + 投票)。
+
+## `run` 返回什么
+
+`engine.run(...)` 解析为带 `status` 的 `AgentResult`:
+
+- `completed` → `output` 是最终答案。
+- `failed` → `error`;`stopped` → `reason`。
+- `waiting_for_user` / `waiting_for_approval` / `waiting_for_schedule` → 运行已暂停;
+  用 `engine.resume(...)`(或 `resolveApproval(...)`)继续。完整状态在 `result.state`,
+  `result.state.runId` 可用于从 `StateStore` 重新加载。
+
 ## 下一步
 
 - [架构](../architecture.md) — 循环与接缝如何协作。
 - [记忆](memory.md) · [端侧模型](on-device.md) · [多 Agent 编排](multi-agent.md)
-- [安装与引入](consuming-packages.md) — 从仓库安装。
+- [安装](consuming-packages.md) — TypeScript(npm)与 Python(pip)详解。
