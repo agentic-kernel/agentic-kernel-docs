@@ -7,7 +7,7 @@ feature-paired SDKs:
 - **TypeScript** — `@agentic-kernel/*` monorepo (core + adapters)
 - **Python** — `agentic-kernel` (single distribution; `agentic_kernel.core` + adapters)
 
-Both SDKs are at **v0.5.1** and kept at feature parity.
+Both SDKs are at **v0.6.0** and kept at feature parity.
 
 ## Why a kernel?
 
@@ -30,7 +30,7 @@ governed**, and composes the harness at well-defined seams instead. That buys:
 - **[Architecture](architecture.md)** — the run loop, data model, and the injection seams.
 - **[Getting started](guides/getting-started.md)** — first agent in either SDK.
 - **[Consuming packages](guides/consuming-packages.md)** — install from the registry.
-- **Guides:** [Memory](guides/memory.md) · [On-device models](guides/on-device.md) · [Multi-agent orchestration](guides/multi-agent.md)
+- **Guides:** [Memory](guides/memory.md) · [On-device models](guides/on-device.md) · [Multi-agent orchestration](guides/multi-agent.md) · [Token usage](guides/token-usage.md)
 - **Manuals:** [Developer guide](manuals/developer-guide.md) · [Comprehensive manual](manuals/manual.md)
 - **[Development records](reports/index.md)** — real-LLM evaluation & stress campaigns.
 

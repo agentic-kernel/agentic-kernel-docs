@@ -69,6 +69,7 @@ plugins:
             Memory: 记忆
             On-device models: 端侧模型
             Multi-agent orchestration: 多 Agent 编排
+            Token usage: Token 用量
             Installation: 安装
             Manual: 完整手册
             Developer guide: 开发者指南
@@ -86,6 +87,7 @@ nav:
       - Memory: guides/memory.md
       - On-device models: guides/on-device.md
       - Multi-agent orchestration: guides/multi-agent.md
+      - Token usage: guides/token-usage.md
       - Installation: guides/consuming-packages.md
       - Manual: manuals/manual.md
       - Developer guide: manuals/developer-guide.md
