@@ -6,7 +6,7 @@
 - **TypeScript** — `@agentic-kernel/*` monorepo(core + 适配器)
 - **Python** — `agentic-kernel`(单分发包;`agentic_kernel.core` + 适配器)
 
-两个 SDK 均为 **v0.6.0**,保持功能对等。
+两个 SDK 均为 **v0.6.1**,保持功能对等。
 
 ## 为什么是「内核」?
 

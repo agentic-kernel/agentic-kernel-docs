@@ -1,6 +1,6 @@
 # Installation
 
-Agentic Kernel ships as two SDKs, feature-paired at the same version (**0.6.0**),
+Agentic Kernel ships as two SDKs, feature-paired at the same version (**0.6.1**),
 licensed **Apache-2.0**.
 
 ## Prerequisites
@@ -58,7 +58,7 @@ pip install "agentic-kernel-runtime[all]"      # httpx + psycopg + opentelemetry
 
 ```python
 import agentic_kernel as ak
-print(ak.__version__)                 # 0.6.0
+print(ak.__version__)                 # 0.6.1
 from agentic_kernel.core import create_agent_engine
 ```
 
