@@ -1,6 +1,6 @@
 # 安装
 
-Agentic Kernel 以两个 SDK 形式提供,功能对等、版本一致(**0.6.1**),许可为
+Agentic Kernel 以两个 SDK 形式提供,功能对等、版本一致(**0.7.0**),许可为
 **Apache-2.0**。
 
 ## 前置条件
@@ -57,7 +57,7 @@ pip install "agentic-kernel-runtime[all]"      # httpx + psycopg + opentelemetry
 
 ```python
 import agentic_kernel as ak
-print(ak.__version__)                 # 0.6.1
+print(ak.__version__)                 # 0.7.0
 from agentic_kernel.core import create_agent_engine
 ```
 

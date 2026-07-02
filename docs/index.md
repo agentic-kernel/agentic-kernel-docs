@@ -7,7 +7,7 @@ feature-paired SDKs:
 - **TypeScript** — `@agentic-kernel/*` monorepo (core + adapters)
 - **Python** — `agentic-kernel` (single distribution; `agentic_kernel.core` + adapters)
 
-Both SDKs are at **v0.6.1** and kept at feature parity.
+Both SDKs are at **v0.7.0** and kept at feature parity.
 
 ## Why a kernel?
 
