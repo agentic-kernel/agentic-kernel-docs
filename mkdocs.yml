@@ -69,6 +69,8 @@ plugins:
             Getting started: 快速上手
             Architecture: 架构
             Memory: 记忆
+            Sessions & multi-turn: 会话与多轮
+            Native tool calling: 原生工具调用
             On-device models: 端侧模型
             Multi-agent orchestration: 多 Agent 编排
             Token usage: Token 用量
@@ -87,6 +89,8 @@ nav:
       - Getting started: guides/getting-started.md
       - Architecture: architecture.md
       - Memory: guides/memory.md
+      - Sessions & multi-turn: guides/sessions.md
+      - Native tool calling: guides/native-tool-calling.md
       - On-device models: guides/on-device.md
       - Multi-agent orchestration: guides/multi-agent.md
       - Token usage: guides/token-usage.md
