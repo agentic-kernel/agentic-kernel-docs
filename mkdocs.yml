@@ -71,6 +71,7 @@ plugins:
             Memory: 记忆
             Sessions & multi-turn: 会话与多轮
             Native tool calling: 原生工具调用
+            Governance & resilience: 治理与韧性
             On-device models: 端侧模型
             Multi-agent orchestration: 多 Agent 编排
             Token usage: Token 用量
@@ -91,6 +92,7 @@ nav:
       - Memory: guides/memory.md
       - Sessions & multi-turn: guides/sessions.md
       - Native tool calling: guides/native-tool-calling.md
+      - Governance & resilience: guides/governance.md
       - On-device models: guides/on-device.md
       - Multi-agent orchestration: guides/multi-agent.md
       - Token usage: guides/token-usage.md
